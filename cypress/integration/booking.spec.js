@@ -32,7 +32,7 @@ context('Booking', () => {
 	});
 	it('Alterar uma reserva com sucesso @functional', () => {
 		request.postBooking().then(postBookingResponse => {
-			request.updateBookingWithToken(postBookingResponse).then(putBookingResponse => {
+			request.updateBookingWithToken(postBookingResponse.body.bookingid).then(putBookingResponse => {
 			  assertions.shouldHaveStatus(putBookingResponse, 200)
 			})
 		})
@@ -40,7 +40,7 @@ context('Booking', () => {
 
 	it('Deletar com sucesso @functional', () => {
 		request.postBooking().then(postBookingResponse => {
-			request.deleteBooking(postBookingResponse).then(deleteBookingResponse => {
+			request.deleteBooking(postBookingResponse.body.bookingid).then(deleteBookingResponse => {
 				assertions.shouldHaveStatus(deleteBookingResponse, 201)
 			})
 		})
@@ -58,4 +58,38 @@ context('Booking', () => {
 		})
 	})
 
+	it('Tentar alterar reserva inexistente', () => {
+		const id =12121212121212
+		request.updateBookingWithToken(id).then(response => {
+			assertions.shouldHaveStatus(response,405)
+		})
+	})
+
+	it('Tentar alterar reserva com token inválido', () => {
+		const invalidToken = 'aijaiaihsugyg1'
+			request.updateBookingWithToken(1,invalidToken).then(response => {
+					assertions.shouldHaveStatus(response,403)
+			})
+	})
+
+	it('Tentar excluir uma reserva inexistente',() => {
+		const bookingid = 56261521251825812851
+		request.deleteBooking(bookingid).then(response => {
+			assertions.shouldHaveStatus(response,405)
+		})
+	})
+
+	it.only('tentar excluir uma reserva sem token', () => {
+		const noToken = ''
+		request.deleteBooking(1,noToken).then(response => {
+			assertions.shouldHaveStatus(response,403)
+		})
+	})
+
+	it.only('Excluir uma reserva com token inválido', () => {
+		const invalidToken = '12131313ewdihihih32'
+		request.deleteBooking(1,invalidToken).then(response=> {
+			assertions.shouldHaveStatus(response,403)
+		})
+	} )
 });
