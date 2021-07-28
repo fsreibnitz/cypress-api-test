@@ -51,13 +51,13 @@ class Requests {
 		})
 	}
 
-	updateBookingWithToken(response){
-		const id = response.body.bookingid
+	updateBookingWithToken(bookingid, newToken){
+		const token = newToken ? newToken : Cypress.env('token')
 		return 	cy.request({
 			method: 'PUT',
-			url: `booking/${id}`,
+			url: `booking/${bookingid}`,
 			headers: {
-				Cookie: `token=${Cypress.env('token')}`
+				Cookie: `token=${token}`
 			},
 			body: {
 				"firstname": "Pedro",
@@ -93,13 +93,14 @@ class Requests {
 		})
 	}
 
-	deleteBooking(response){
-		const id = response.body.bookingid
+	deleteBooking(bookingId,  token){
+		const validToken = `${Cypress.env('token')}`
+		const newToken = token == '' || token != validToken? token : validToken
 		return	cy.request({
 			method: 'DELETE',
-			url: `booking/${id}`,
+			url: `booking/${bookingId}`,
 			headers: {
-				Cookie: `token=${Cypress.env('token')}`
+					Cookie: `token=${newToken}` 
 			},
 			failOnStatusCode: false
 		})
