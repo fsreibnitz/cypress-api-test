@@ -1,0 +1,19 @@
+{
+  "name": "apitest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+		"test:healthCheck": "npx cypress run --env grep=@healthCheck",
+		"test:contract": "npx cypress run --env grep=@contract",
+		"test:functional": "npx cypress run --env grep=@functional"
+
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cy-spok": "github:bahmutov/cy-spok",
+    "cypress-select-tests": "^1.7.1"
+  }
+}
