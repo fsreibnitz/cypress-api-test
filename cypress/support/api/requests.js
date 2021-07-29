@@ -88,8 +88,6 @@ class Requests {
 		this.postAuth().then(authResponse => {
 			const token = authResponse.body.token
 			Cypress.env('token', token)
-		
-
 		})
 	}
 

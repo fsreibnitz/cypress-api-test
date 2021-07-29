@@ -52,41 +52,39 @@ context('Booking', () => {
 			url: '/booking'
 		}).then(getBookingResponse => {
 			console.log(getBookingResponse.body)
-
-			
-						 assertions.validateContractOf(getBookingResponse, schemas.getListaBookingSchema())
+				 assertions.validateContractOf(getBookingResponse, schemas.getListaBookingSchema())
 		})
 	})
 
-	it('Tentar alterar reserva inexistente', () => {
+	it('Erro ao alterar reserva inexistente', () => {
 		const id =12121212121212
 		request.updateBookingWithToken(id).then(response => {
 			assertions.shouldHaveStatus(response,405)
 		})
 	})
 
-	it('Tentar alterar reserva com token inválido', () => {
+	it('Não permitir alterar reserva com token inválido', () => {
 		const invalidToken = 'aijaiaihsugyg1'
 			request.updateBookingWithToken(1,invalidToken).then(response => {
 					assertions.shouldHaveStatus(response,403)
 			})
 	})
 
-	it('Tentar excluir uma reserva inexistente',() => {
+	it('Erro ao excluir uma reserva inexistente',() => {
 		const bookingid = 56261521251825812851
 		request.deleteBooking(bookingid).then(response => {
 			assertions.shouldHaveStatus(response,405)
 		})
 	})
 
-	it.only('tentar excluir uma reserva sem token', () => {
+	it('Não permitir excluir uma reserva sem token', () => {
 		const noToken = ''
 		request.deleteBooking(1,noToken).then(response => {
 			assertions.shouldHaveStatus(response,403)
 		})
 	})
 
-	it.only('Excluir uma reserva com token inválido', () => {
+	it('Não permitir excluir uma reserva com token inválido', () => {
 		const invalidToken = '12131313ewdihihih32'
 		request.deleteBooking(1,invalidToken).then(response=> {
 			assertions.shouldHaveStatus(response,403)

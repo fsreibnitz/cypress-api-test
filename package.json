@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run",
-		"test:healthCheck": "npx cypress run --env grep=@healthCheck",
-		"test:contract": "npx cypress run --env grep=@contract",
-		"test:functional": "npx cypress run --env grep=@functional"
-
+    "test:healthCheck": "npx cypress run --env grep=@healthCheck",
+    "test:contract": "npx cypress run --env grep=@contract",
+    "test:functional": "npx cypress run --env grep=@functional"
   },
   "author": "",
   "license": "ISC",

@@ -13,20 +13,17 @@ class Schemas {
 					checkout: spok.string
 				},
 				additionalneeds: spok.string
-				}
-
+			}
 		)
 	}
 
 	getListaBookingSchema(){
 		return spok(
 			{
-					Array:'bookingind'
-			
-		})
-	
+				Array:'bookingind'
+			}
+		)
 	}
-
 }
 
 export default new Schemas()

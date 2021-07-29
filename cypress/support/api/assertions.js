@@ -32,7 +32,7 @@ class Assertions {
 			expect(response.duration, 'duration').lt(duration)
 	}
 	
-	shoulB
+	
 }
 
 export default new Assertions()
