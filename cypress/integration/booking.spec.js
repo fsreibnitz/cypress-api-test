@@ -40,7 +40,7 @@ context('Booking', () => {
 
 	it('Deletar com sucesso @functional', () => {
 		request.postBooking().then(postBookingResponse => {
-			request.deleteBooking(postBookingResponse.body.bookingid).then(deleteBookingResponse => {
+			request.deleteBooking(postBookingResponse.body.bookingid,'validToken').then(deleteBookingResponse => {
 				assertions.shouldHaveStatus(deleteBookingResponse, 201)
 			})
 		})
@@ -72,7 +72,7 @@ context('Booking', () => {
 
 	it('Erro ao excluir uma reserva inexistente',() => {
 		const bookingid = 56261521251825812851
-		request.deleteBooking(bookingid).then(response => {
+		request.deleteBooking(bookingid,'validToken').then(response => {
 			assertions.shouldHaveStatus(response,405)
 		})
 	})
