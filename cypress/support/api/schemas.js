@@ -20,7 +20,7 @@ class Schemas {
 	getListaBookingSchema(){
 		return spok(
 			{
-				Array:'bookingind'
+				Array
 			}
 		)
 	}
