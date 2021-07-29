@@ -9,7 +9,7 @@ class Requests {
 	getBooking(){
 		return 	cy.request({
 			method: 'GET',
-			url: 'booking/1'
+			url: 'booking/2'
 		})
 	}
 
@@ -93,7 +93,7 @@ class Requests {
 
 	deleteBooking(bookingId,  token){
 		const validToken = `${Cypress.env('token')}`
-		const newToken = token == '' || token != validToken? token : validToken
+		const newToken = token == '' || token != 'validToken' ? token : validToken
 		return	cy.request({
 			method: 'DELETE',
 			url: `booking/${bookingId}`,
