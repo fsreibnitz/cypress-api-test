@@ -5,6 +5,12 @@ class Assertions {
 	}
 
 	validateContractOf(response, schema){
+		console.log('passou')
+		if (Array.isArray(response.body)){
+			response.body = response.body[0]
+			console.log('passou dentro')
+
+		}
 		return 	cy.wrap(response.body).should(
 			schema
 		)
