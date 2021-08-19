@@ -4,7 +4,7 @@ class Schemas {
 	getBookingSchema(){
 		return spok(
 			{					
-				firstname: spok.string,
+				firstname: spok.test(/Mark/) || spok.test(/PAULO/) ,
 				lastname:  spok.string,
 				totalprice: spok.number,
 				depositpaid: spok.type('boolean'),
@@ -12,15 +12,16 @@ class Schemas {
 					checkin:  spok.string,
 					checkout: spok.string
 				},
-				additionalneeds: spok.string
+			//	additionalneeds: spok.string
 			}
 		)
 	}
 
 	getListaBookingSchema(){
+		//TODO verificar como conferir Array
 		return spok(
 			{
-				Array
+			bookingid: spok.number 
 			}
 		)
 	}
